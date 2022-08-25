@@ -48,4 +48,39 @@ def get_age_ranges():
             freq[9] += 1
     return {'Age':ages,'Freq':freq,'Color':color}
 
+@router.get('/death-survive')
+def get_death_servive():
+    return {'survived':len(df[df['survived'] == 1]),'deathed':len(df[df['survived'] == 0])}
 
+@router.get('/survive-gender')
+def get_survive_gender_details():
+    return {'male':len(df[(df['survived'] == 1) & (df['sex'] == 'male')]),'female':len(df[(df['survived'] == 1) & (df['sex'] == 'female')])}
+
+@router.get('/death-gender')
+def get_survive_gender_details():
+    return {'male':len(df[(df['survived'] == 0) & (df['sex'] == 'male')]),'female':len(df[(df['survived'] == 0) & (df['sex'] == 'female')])}
+
+@router.get('/survived-death-by-gender')
+def get_survived_death_by_gender(gender:str,alive:bool):
+    isalive = 1 if alive else 0
+    genColor = lambda x:f'rgb({randint(0, 255)}, {randint(0, 255)}, {randint(0, 255)},0.5)'
+    colors = [genColor(i) for i in range(5)]
+    Ages =  df[(df['survived'] == isalive) & (df['sex'] == gender)]['age'].to_list()
+    stages = ['child','teen','young','adult','senior']
+    ages = [0 for i in range(5)]
+    for age in Ages:
+        if 0 < age <= 12:
+            ages[0] += 1
+        if 12 < age <= 19:
+            ages[1] += 1
+        if 19 < age <= 35:
+            ages[2] += 1
+        if 35 < age <= 60:
+            ages[3] += 1
+        if 60 < age:
+            ages[4] += 1 
+    return {
+        'stages':stages,
+        'ages':ages,
+        'colors':colors
+    }  

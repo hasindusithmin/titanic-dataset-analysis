@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div class="w3-row w3-padding">
+            <div class="w3-row w3-card">
+                <div class="w3-third">
+                    <h3 class="w3-center">Survived</h3>
+                    <canvas id="survivedbygender"></canvas>
+                </div>
+                <div class="w3-third">
+                    <h3 class="w3-center">ALL</h3>
+                    <canvas id="death-survive"></canvas>
+                </div>
+                <div class="w3-third">
+                    <h3 class="w3-center">Deathed</h3>
+                    <canvas id="deathedbygender"></canvas>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="w3-half">
+                    <div class="w3-half w3-card">
+                        <h5 class="w3-center">Survived Male Stages</h3>
+                        <canvas id="suvivedmalebystages"></canvas>
+                    </div>
+                    <div class="w3-half w3-card">
+                        <h5 class="w3-center">Survived Female Stages</h3>
+                        <canvas id="survivedfemalebystages"></canvas>
+                    </div>
+                </div>
+                <div class="w3-half">
+                    <div class="w3-half w3-card">
+                        <h5 class="w3-center">Deathed Male Stages</h3>
+                            <canvas id="deathedmalebystages"></canvas>
+                    </div>
+                    <div class="w3-half w3-card">
+                        <h5 class="w3-center">Deathed Female Stages</h3>
+                            <canvas id="deathedfemalebystages"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row w3-card">4</div>
+        </div>
+    </main>
+    <footer></footer>
+    <script>
+        fetch('/api/death-survive')
+            .then(res => res.json())
+            .then(dt => {
+                const { survived, deathed } = dt;
+                const data = {
+                    labels: [
+                        'Survived',
+                        'Deathed'
+                    ],
+                    datasets: [{
+                        label: 'Death/Survive',
+                        data: [survived, deathed],
+                        backgroundColor: [
+                            'rgb(250,11,55,0.75)',
+                            'rgb(5,5,5,0.75)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+                const config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true
+                    }
+                };
+                new Chart(document.getElementById('death-survive'), config)
+            })
+        fetch('/api/survive-gender')
+            .then(res => res.json())
+            .then(dt => {
+                const { male, female } = dt;
+                const data = {
+                    labels: [
+                        'Male',
+                        'Female'
+                    ],
+                    datasets: [{
+                        label: 'Survived',
+                        data: [male, female],
+                        backgroundColor: [
+                            'rgb(11,84,250,0.5)',
+                            'rgb(239,11,250,0.5)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+                const config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true
+                    }
+                };
+                new Chart(document.getElementById('survivedbygender'), config)
+
+            })
+        fetch('/api/death-gender')
+            .then(res => res.json())
+            .then(dt => {
+                const { male, female } = dt;
+                const data = {
+                    labels: [
+                        'Male',
+                        'Female'
+                    ],
+                    datasets: [{
+                        label: 'Deathed',
+                        data: [male, female],
+                        backgroundColor: [
+                            'rgb(11,84,250,0.5)',
+                            'rgb(239,11,250,0.5)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+                const config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true
+                    }
+                };
+                new Chart(document.getElementById('deathedbygender'), config)
+
+            })
+        // Survived Male 
+        fetch('/api/survived-death-by-gender?gender=male&alive=true')
+            .then(res => res.json())
+            .then(dt => {
+                const { stages, ages, colors } = dt;
+                const data = {
+                    labels: stages,
+                    datasets: [{
+                        label: 'Survived Male',
+                        data: ages,
+                        backgroundColor: colors,
+                        hoverOffset: 4
+                    }]
+                };
+                const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        responsive: true
+                    }
+                };
+                new Chart(document.getElementById('suvivedmalebystages'), config)
+            })
+            // Survived Female 
+            fetch('/api/survived-death-by-gender?gender=female&alive=true')
+            .then(res => res.json())
+            .then(dt => {
+                const { stages, ages, colors } = dt;
+                const data = {
+                    labels: stages,
+                    datasets: [{
+                        label: 'Survived Female',
+                        data: ages,
+                        backgroundColor: colors,
+                        hoverOffset: 4
+                    }]
+                };
+                const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        responsive: true
+                    }
+                };
+                new Chart(document.getElementById('survivedfemalebystages'), config)
+            })
+            // Deathed Male 
+            fetch('/api/survived-death-by-gender?gender=male&alive=false')
+            .then(res => res.json())
+            .then(dt => {
+                const { stages, ages, colors } = dt;
+                const data = {
+                    labels: stages,
+                    datasets: [{
+                        label: 'Deathed Male',
+                        data: ages,
+                        backgroundColor: colors,
+                        hoverOffset: 4
+                    }]
+                };
+                const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        responsive: true
+                    }
+                };
+                new Chart(document.getElementById('deathedmalebystages'), config)
+            })
+            // Deathed Female 
+            fetch('/api/survived-death-by-gender?gender=female&alive=false')
+            .then(res => res.json())
+            .then(dt => {
+                const { stages, ages, colors } = dt;
+                const data = {
+                    labels: stages,
+                    datasets: [{
+                        label: 'Deathed Female',
+                        data: ages,
+                        backgroundColor: colors,
+                        hoverOffset: 4
+                    }]
+                };
+                const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        responsive: true
+                    }
+                };
+                new Chart(document.getElementById('deathedfemalebystages'), config)
+            })
+    </script>
+</body>
+
+</html>

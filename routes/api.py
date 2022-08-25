@@ -12,9 +12,9 @@ router = APIRouter(
     tags=['Api']
 )
 
-@router.get('/')
-def root():
-    return "Hello World"
+@router.get('/gender')
+def get_gender():
+    return {'Male':len(df[df['sex'] == 'male']),'Female':len(df[df['sex'] == 'female'])}
 
 
 

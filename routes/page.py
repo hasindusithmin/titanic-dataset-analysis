@@ -10,7 +10,10 @@ router = APIRouter(
 templates = Jinja2Templates(directory="templates")
 
 @router.get("/", response_class=HTMLResponse)
-async def read_item(request: Request):
+def get_home_page(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@router.get("/gender", response_class=HTMLResponse)
+def get_gender_page(request: Request):
+    return templates.TemplateResponse("gender.html", {"request": request})
 

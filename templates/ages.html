@@ -5,44 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gender Details</title>
+    <title>Age Details</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <header></header>
     <main>
-        <h1>Gender Details</h1>
+        <h1>Age Ranges</h1>
         <div style="width:500px;height:500px;">
             <canvas id="myChart"></canvas>
         </div>
     </main>
     <footer></footer>
     <script>
-        fetch('/api/gender')
+        fetch('/api/age-range')
             .then(res => res.json())
             .then(dt => {
-                const { Male, Female } = dt;
+                const { Age, Freq, Color } = dt;
                 const data = {
-                    labels: [
-                        'Male',
-                        'Female'
-                    ],
+                    labels: Age,
                     datasets: [{
-                        label: 'Gender',
-                        data: [Male, Female],
-                        backgroundColor: [
-                            'rgb(51, 113, 255,0.5)',
-                            'rgb(190, 51, 255,0.5)'
-                        ],
-                        hoverOffset: 4
+                        label: 'Age Ranges',
+                        data: Freq,
+                        backgroundColor: Color,
+                        borderWidth: 1
                     }]
                 };
                 const config = {
-                    type: 'doughnut',
+                    type: 'bar',
                     data: data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    },
                 };
-                const mychart = new Chart(
+                const chart = new Chart(
                     document.getElementById('myChart'),
                     config
                 )

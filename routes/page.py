@@ -17,3 +17,6 @@ def get_home_page(request: Request):
 def get_gender_page(request: Request):
     return templates.TemplateResponse("gender.html", {"request": request})
 
+@router.get("/ages", response_class=HTMLResponse)
+def get_ages_page(request: Request):
+    return templates.TemplateResponse("ages.html", {"request": request})

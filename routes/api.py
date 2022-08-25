@@ -1,5 +1,5 @@
 
-from fastapi import APIRouter
+from fastapi import APIRouter,HTTPException
 from os import getcwd
 import pandas as pd
 import numpy as np
@@ -84,3 +84,15 @@ def get_survived_death_by_gender(gender:str,alive:bool):
         'ages':ages,
         'colors':colors
     }  
+
+@router.get('/survive-or-death-by-class')
+def get_survive_or_death_by_class(survive:bool = True):
+    n = 1 if survive else 0
+    quantity = lambda c:len(df[(df['survived'] == n) & (df['class'] == c)])
+    return [quantity(class_) for class_ in ['First','Second','Third']] 
+
+@router.get('/survive-or-death-by-deck')
+def get_survive_or_death_by_deck(survive:bool = True):
+    n = 1 if survive else 0
+    quantity = lambda deck:len(df[(df['survived'] == n) & (df['deck'] == deck)])
+    return [quantity(deck) for deck in ['A','B','C','D','E','F','G']]

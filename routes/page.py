@@ -24,3 +24,7 @@ def get_ages_page(request: Request):
 @router.get("/overview", response_class=HTMLResponse)
 def get_ages_page(request: Request):
     return templates.TemplateResponse("overview.html", {"request": request})
+
+@router.get("/survive", response_class=HTMLResponse)
+def get_ages_page(request: Request):
+    return templates.TemplateResponse("survive.html", {"request": request})

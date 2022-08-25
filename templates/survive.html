@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survived</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div class="w3-row">
+            <div class="w3-half w3-card w3-padding">
+                <h3 class="w3-center">Survive By Class</h3>
+                <canvas id="survivebyclass"></canvas>
+            </div>
+            <div class="w3-half w3-card w3-padding">
+                <h3 class="w3-center">Death By Class</h3>
+                <canvas id="deathbyclass"></canvas>
+            </div> 
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-card w3-padding">
+                <h3 class="w3-center">Survive By Desk</h3>
+                <canvas id="survivebydeck"></canvas>
+            </div>
+            <div class="w3-half w3-card w3-padding">
+                <h3 class="w3-center">Death By Deck</h3>
+                <canvas id="deathbydeck"></canvas>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    <script>
+        // Survive By Class 
+        fetch('/api/survive-or-death-by-class')
+            .then(res => res.json())
+            .then(dt => {
+                const data = {
+                    labels: ['First', 'Second', 'Third'],
+                    datasets: [{
+                        label: 'By Class',
+                        data: dt,
+                        fill: true,
+                        borderColor: 'rgb(250, 33, 11, 0.8)',
+                        tension: 0.1
+                    }]
+                };
+                const config = {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        scales: {
+                            yAxes: {
+                                title: {
+                                    display: true,
+                                    text: 'Passengers',
+                                    font: {
+                                        size: 15
+                                    }
+                                }
+                            },
+                            xAxes: {
+                                title: {
+                                    display: true,
+                                    text: 'Class',
+                                    font: {
+                                        size: 15
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+                new Chart(document.getElementById('survivebyclass'), config)
+            })
+            // Survive By Deck 
+        fetch('/api/survive-or-death-by-deck')
+            .then(res => res.json())
+            .then(dt => {
+                const data = {
+                    labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+                    datasets: [{
+                        label: 'By Deck',
+                        data: dt,
+                        fill: true,
+                        borderColor: 'rgb(94, 250, 110, 0.8)',
+                        tension: 0.1
+                    }]
+                };
+                const config = {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        scales: {
+                            yAxes: {
+                                title: {
+                                    display: true,
+                                    text: 'Passengers',
+                                    font: {
+                                        size: 15
+                                    }
+                                }
+                            },
+                            xAxes: {
+                                title: {
+                                    display: true,
+                                    text: 'Deck',
+                                    font: {
+                                        size: 15
+                                    }
+                                }
+                            }
+                        },
+                    }
+                };
+                new Chart(document.getElementById('survivebydeck'), config)
+            })
+            // Death By Class 
+        fetch('/api/survive-or-death-by-class?survive=false')
+            .then(res => res.json())
+            .then(dt => {
+                const data = {
+                    labels: ['First', 'Second', 'Third'],
+                    datasets: [{
+                        label: 'By Class',
+                        data: dt,
+                        fill: true,
+                        borderColor: 'rgb(11, 80, 250, 0.8)',
+                        tension: 0.1
+                    }]
+                };
+                const config = {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        scales: {
+                            yAxes: {
+                                title: {
+                                    display: true,
+                                    text: 'Passengers',
+                                    font: {
+                                        size: 15
+                                    }
+                                }
+                            },
+                            xAxes: {
+                                title: {
+                                    display: true,
+                                    text: 'Class',
+                                    font: {
+                                        size: 15
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+                new Chart(document.getElementById('deathbyclass'), config)
+            })
+            // Death By Deck 
+            fetch('/api/survive-or-death-by-deck?survive=false')
+            .then(res => res.json())
+            .then(dt => {
+                const data = {
+                    labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+                    datasets: [{
+                        label: 'By Deck',
+                        data: dt,
+                        fill: true,
+                        borderColor: 'rgb(0, 0, 0, 0.8)',
+                        tension: 0.1
+                    }]
+                };
+                const config = {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        scales: {
+                            yAxes: {
+                                title: {
+                                    display: true,
+                                    text: 'Passengers',
+                                    font: {
+                                        size: 15
+                                    }
+                                }
+                            },
+                            xAxes: {
+                                title: {
+                                    display: true,
+                                    text: 'Deck',
+                                    font: {
+                                        size: 15
+                                    }
+                                }
+                            }
+                        },
+                    }
+                };
+                new Chart(document.getElementById('deathbydeck'), config)
+            })
+    </script>
+</body>
+
+</html>

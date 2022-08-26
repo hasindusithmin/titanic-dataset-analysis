@@ -1,14 +1,14 @@
 
 from fastapi import APIRouter,HTTPException
-from os import getcwd
 import pandas as pd
 import numpy as np
 from random import randint
 ####################################
 
 # Create `df` DataFrame 
-df = pd.read_csv(f'{getcwd()}/titanic.csv')
-
+df = pd.read_csv('https://sithmin404.github.io/authy/titanic.csv.txt')
+# df = pd.DataFrame()
+# print('df')
 router = APIRouter(
     prefix='/api',
     tags=['Api']

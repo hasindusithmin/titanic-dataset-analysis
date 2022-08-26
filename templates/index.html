@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
+
 <body>
-    
+    <div class="w3-panel">
+        <header><div class="w3-row" id="root"></div></header>
+        <main>
+            <div class="w3-row"><h1 class="w3-text-grey w3-cursive w3-center">Titanic</h1></div>
+            <div class="w3-row">
+                <div class="w3-half">
+                    <img src="/static/titanic.jpg" style="display: block; margin-left: auto; margin-right: auto;" class="w3-image" alt="titanic sunk">
+                </div>
+                <div class="w3-half">
+                    <div class="w3-panel w3-leftbar w3-sand w3-pale-green w3-serif">
+                        <p><i>"RMS Titanic was a British passenger liner, operated by the White Star Line, which sank in the North Atlantic Ocean on 15 April 1912 after striking an iceberg during her maiden voyage from Southampton, UK, to New York City, United States. Of the estimated 2,224 passengers and crew aboard, more than 1,500 died, making it the deadliest sinking of a single ship up to that time.[a] It remains the deadliest peacetime sinking of a superliner or cruise ship.[4] The disaster drew public attention, provided foundational material for the disaster film genre, and has inspired many artistic works."</i></p>
+                      </div> 
+                </div>
+            </div>
+            <div class="w3-row"></div>
+        </main>
+        <footer>
+            <div class="w3-center w3-wide" style="position: fixed; left: 0; bottom: 0; width: 100%; text-align: center;">Powerd By <img src="/static/python.png" alt="python"></div>
+        </footer>
+    </div>
+    <script>
+        let innerHtml = ''
+        const pages = ['home','overview','gender','survive']
+        pages.forEach(page=>{
+            let link = `/${page}`
+            if (page=='home') link = '/'
+            innerHtml += `<div class="w3-quarter w3-card-4 w3-wide w3-center w3-padding w3-large"  onclick="window.location.href='${link}'">${page}</div>\n`
+        })
+        document.getElementById('root').innerHTML = innerHtml
+    </script>
 </body>
+
 </html>

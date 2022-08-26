@@ -17,14 +17,10 @@ def get_home_page(request: Request):
 def get_gender_page(request: Request):
     return templates.TemplateResponse("gender.html", {"request": request})
 
-@router.get("/ages", response_class=HTMLResponse)
-def get_ages_page(request: Request):
-    return templates.TemplateResponse("ages.html", {"request": request})
-
 @router.get("/overview", response_class=HTMLResponse)
-def get_ages_page(request: Request):
+def get_overview_page(request: Request):
     return templates.TemplateResponse("overview.html", {"request": request})
 
 @router.get("/survive", response_class=HTMLResponse)
-def get_ages_page(request: Request):
+def get_survive_page(request: Request):
     return templates.TemplateResponse("survive.html", {"request": request})

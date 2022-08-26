@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header></header>
+    <header><div class="w3-row w3-panel" id="root"></div></header>
     <main>
         <div class="w3-row">
             <div class="w3-half w3-card w3-padding">
@@ -34,7 +34,16 @@
             </div>
         </div>
     </main>
-    <footer></footer>
+    <script>
+        let innerHtml = ''
+        const pages = ['home','overview','gender','survive']
+        pages.forEach(page=>{
+            let link = `/${page}`
+            if (page=='home') link = '/'
+            innerHtml += `<div class="w3-quarter w3-card-4 w3-wide w3-center w3-padding w3-large"  onclick="window.location.href='${link}'">${page}</div>\n`
+        })
+        document.getElementById('root').innerHTML = innerHtml
+    </script>
     <script>
         // Survive By Class 
         fetch('/api/survive-or-death-by-class')

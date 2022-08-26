@@ -16,37 +16,12 @@ router = APIRouter(
 
 @router.get('/gender')
 def get_gender():
-    return {'Male':len(df[df['sex'] == 'male']),'Female':len(df[df['sex'] == 'female'])}
-
-
-@router.get('/age-range')
-def get_age_ranges():
     genColor = lambda x:f'rgb({randint(0, 255)}, {randint(0, 255)}, {randint(0, 255)},0.5)'
-    color = [genColor(i) for i in range(10)]
-    ages = [f'{x}-{x+10}' for x in range(0,91,10)]
-    freq = [0 for x in range(10)]
-    for x in [int(age) for age in df.age.to_list() if not np.isnan(age)]:
-        if 0 < x <= 10:
-            freq[0] += 1
-        if 10 < x <= 20:
-            freq[1] += 1
-        if 20 < x <= 30:
-            freq[2] += 1
-        if 30 < x <= 40:
-            freq[3] += 1
-        if 40 < x <= 50:
-            freq[4] += 1
-        if 50 < x <= 60:
-            freq[5] += 1
-        if 60 < x <= 70:
-            freq[6] += 1
-        if 70 < x <= 80:
-            freq[7] += 1
-        if 80 < x <= 90:
-            freq[8] += 1
-        if 90 < x <= 100:
-            freq[9] += 1
-    return {'Age':ages,'Freq':freq,'Color':color}
+    quantity = lambda sex:len(df[df['sex'] == sex])
+    sex = ['male','female']
+    return {'sex':sex,'quantity':[quantity(s) for s in sex],'colors':[genColor(i) for i in range(3)]}
+
+
 
 @router.get('/death-survive')
 def get_death_servive():
@@ -96,3 +71,10 @@ def get_survive_or_death_by_deck(survive:bool = True):
     n = 1 if survive else 0
     quantity = lambda deck:len(df[(df['survived'] == n) & (df['deck'] == deck)])
     return [quantity(deck) for deck in ['A','B','C','D','E','F','G']]
+
+@router.get('/man-woman-child')
+def get_man_woman_child():
+    genColor = lambda x:f'rgb({randint(0, 255)}, {randint(0, 255)}, {randint(0, 255)},0.5)'
+    quantity = lambda who:len(df[df['who'] == who])
+    who = ['man','woman','child']
+    return {'person':who,'quantity':[quantity(w) for w in who],'colors':[genColor(i) for i in range(3)]}

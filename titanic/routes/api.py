@@ -6,7 +6,7 @@ from random import randint
 ####################################
 
 # Create `df` DataFrame 
-df = pd.read_csv('https://sithmin404.github.io/authy/titanic.csv.txt')
+df = pd.read_csv('titanic.csv')
 # df = pd.DataFrame()
 # print('df')
 router = APIRouter(

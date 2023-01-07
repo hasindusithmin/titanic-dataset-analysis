@@ -6,17 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gender Details</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400&display=swap" rel="stylesheet">    <style>
+        body{
+            font-family: 'Inter Tight', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
     <header><div class="w3-row w3-panel" id="root"></div></header>
-    <main>
+    <main class="w3-content">
+
         <div class="w3-row w3-padding">
-            <div class="w3-row">
-                <div class="w3-half w3-padding w3-card">
+            <div class="w3-row w3-margin-bottom">
+                <div class="w3-padding w3-card">
+                    
                     <table class="w3-table-all">
+                        <caption>Total: 891</caption>
                         <tr>
                             <th>Gender</th>
                             <th>Quantity</th>
@@ -30,17 +39,19 @@
                             <td>314</td>
                         </tr>
                     </table>
-                    <p class="w3-panel w3-leftbar w3-sand w3-serif">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam architecto iusto nam molestiae
-                        corrupti dolorum dolor alias natus odit esse eligendi corporis rem, odio, quae, laudantium
-                        animi. Nobis, rerum minima?
+                    <p>
+                        <canvas id="male-female"></canvas>
+                    </p>
+                    <p class="w3-justify">
+                        This analysis of the Titanic dataset shows that there were a total of 577 male passengers and 314 female passengers on board the Titanic. This means that the proportion of males to females in the dataset is approximately 64.8% to 35.2%. It is also worth noting that the total number of males and females in the dataset adds up to 891, indicating that all of the passengers in the dataset are accounted for and there are no missing values for the gender variable. This information provides an understanding of the gender distribution among the passengers on the Titanic, and may be useful for further analysis or for understanding the demographics of the passenger list.
                     </p>
                 </div>
-                <div class="w3-half w3-card"><canvas id="male-female"></canvas></div>
             </div>
-            <div class="w3-row">
-                <div class="w3-half w3-padding w3-card">
+
+            <div class="w3-row w3-margin-bottom">
+                <div class="w3-padding w3-card">
                     <table class="w3-table-all">
+                        <caption>Total: 891</caption>
                         <tr>
                             <th>Gender</th>
                             <th>Quantity</th>
@@ -58,24 +69,26 @@
                             <td>83</td>
                         </tr>
                     </table>
-                    <p class="w3-panel w3-leftbar w3-sand w3-serif">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam architecto iusto nam molestiae
-                        corrupti dolorum dolor alias natus odit esse eligendi corporis rem, odio, quae, laudantium
-                        animi. Nobis, rerum minima?
+                    <p>
+                        <canvas id="man-woman-child">
+                    </p>
+                    <p class="w3-justify">
+                        This analysis of the Titanic dataset shows that there were a total of 537 male passengers, 271 female passengers, and 83 child passengers on board the Titanic. This means that the dataset includes information on approximately 60.5% male passengers, 30.4% female passengers, and 9.2% child passengers. It is worth noting that the total number of male, female, and child passengers in the dataset adds up to 891, indicating that all of the passengers in the dataset are accounted for and there are no missing values for the gender or age variables. This breakdown provides some insight into the gender and age distribution of the passengers on the Titanic.
                     </p>
                 </div>
-                <div class="w3-half w3-card"><canvas id="man-woman-child"></canvas></div>
             </div>
+            
+           
 
         </div>
     </main>
     <script>
         let innerHtml = ''
-        const pages = ['home','overview','gender','survive']
+        const pages = ['home','gender','overview','survive']
         pages.forEach(page=>{
             let link = `/${page}`
             if (page=='home') link = '/'
-            innerHtml += `<div class="w3-quarter w3-card-4 w3-wide w3-center w3-padding w3-large"  onclick="window.location.href='${link}'">${page}</div>\n`
+            innerHtml += `<div class="w3-quarter w3-hover-grey w3-border w3-wide w3-center w3-padding w3-large"  onclick="window.location.href='${link}'">${page}</div>\n`
         })
         document.getElementById('root').innerHTML = innerHtml
     </script>

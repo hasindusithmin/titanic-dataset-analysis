@@ -6,41 +6,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survived</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400&display=swap" rel="stylesheet">    <style>
+        body{
+            font-family: 'Inter Tight', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
-    <header><div class="w3-row w3-panel" id="root"></div></header>
-    <main>
+    <header>
+        <div class="w3-row w3-panel" id="root"></div>
+    </header>
+    <main class="w3-panel">
         <div class="w3-row">
-            <div class="w3-half w3-card w3-padding">
-                <h3 class="w3-center">Survive By Class</h3>
-                <canvas id="survivebyclass"></canvas>
+            <div class="w3-half w3-padding">
+                <div class="w3-card w3-round-large w3-padding w3-pale-red">
+                    <h3 class="w3-center">Survived By Class</h3>
+                    <canvas id="survivebyclass"></canvas>
+                    <p class="w3-justify">
+                        This analysis of the Titanic dataset shows that of the passengers who survived the disaster, 136
+                        were in first class, 87 were in second class, and 119 were in third class. This means that the
+                        proportion of survivors in each class was approximately 15.6% for first class, 9.8% for second
+                        class, and 13.3% for third class. This breakdown provides some insight into how the survival
+                        rate varied by passenger class, with a higher proportion of first class passengers surviving
+                        compared to second and third class passengers. It is worth noting that there may be other
+                        factors, in addition to passenger class, that contributed to the differences in survival rates.
+                    </p>
+                </div>
             </div>
-            <div class="w3-half w3-card w3-padding">
-                <h3 class="w3-center">Death By Class</h3>
-                <canvas id="deathbyclass"></canvas>
-            </div> 
+            <div class="w3-half w3-padding">
+                <div class="w3-card w3-round-large w3-padding w3-light-grey">
+                    <h3 class="w3-center">Deathed By Class</h3>
+                    <canvas id="deathbyclass"></canvas>
+                    <p class="w3-justify">
+                        This analysis of the Titanic dataset shows that among the passengers who did not survive the
+                        disaster, 80 were in first class, 97 were in second class, and 372 were in third class. This
+                        breakdown provides some insight into the class distribution of the passengers who did not
+                        survive, and suggests that the majority of the deceased passengers were in third class. It is
+                        worth noting that the class of a passenger on the Titanic was closely related to their
+                        socio-economic status and access to resources such as lifeboats, and this may have influenced
+                        their likelihood of survival. It may be worth exploring this relationship further in your
+                        analysis of the dataset.
+                    </p>
+                </div>
+            </div>
         </div>
+
         <div class="w3-row">
-            <div class="w3-half w3-card w3-padding">
-                <h3 class="w3-center">Survive By Desk</h3>
-                <canvas id="survivebydeck"></canvas>
+
+            <div class="w3-half w3-padding">
+                <div class="w3-card w3-round-large w3-padding w3-pale-red">
+                    <h3 class="w3-center">Survived By Desk</h3>
+                    <canvas id="survivebydeck"></canvas>
+                    <p class="w3-justify">
+                        This analysis of the Titanic dataset shows the number of passengers who survived the disaster,
+                        grouped by the deck on which their cabin was located. The results show that there were 7
+                        passengers who survived and were assigned to Deck A, 35 passengers who survived and were
+                        assigned to Deck B, 35 passengers who survived and were assigned to Deck C, 25 passengers who
+                        survived and were assigned to Deck D, 24 passengers who survived and were assigned to Deck E, 8
+                        passengers who survived and were assigned to Deck F, and 2 passengers who survived and were
+                        assigned to Deck G. This breakdown provides some insight into the relationship between the deck
+                        assignment of a passenger and their likelihood of survival. It is possible that passengers who
+                        were assigned to higher decks had a greater chance of survival due to their proximity to the
+                        lifeboats or other factors.
+                    </p>
+                </div>
             </div>
-            <div class="w3-half w3-card w3-padding">
-                <h3 class="w3-center">Death By Deck</h3>
-                <canvas id="deathbydeck"></canvas>
+            <div class="w3-half w3-padding">
+                <div class="w3-card w3-round-large w3-padding w3-light-grey">
+                    <h3 class="w3-center">Deathed By Deck</h3>
+                    <canvas id="deathbydeck"></canvas>
+                    <p class="w3-justify">
+                        This analysis of the Titanic dataset shows that among the passengers who did not survive the
+                        disaster, the largest number were located on Deck C, with a total of 24 deaths. Deck B had the
+                        second highest number of deaths, with 12, followed by Deck D and E, which both had 8 deaths.
+                        Deck A had the lowest number of deaths, with 8, followed by Deck F and G, which had 5 and 2
+                        deaths, respectively. This breakdown provides some insight into the distribution of deaths among
+                        the different decks on the Titanic. It is worth noting that the total number of deaths on each
+                        deck adds up to the overall number of deaths in the dataset, and that the distribution of deaths
+                        among the different decks may be influenced by a variety of factors such as the location of the
+                        cabins on the ship, the availability of lifeboats, and the demographics of the passengers who
+                        were located on each deck.
+                    </p>
+                </div>
             </div>
         </div>
     </main>
     <script>
         let innerHtml = ''
-        const pages = ['home','overview','gender','survive']
-        pages.forEach(page=>{
+        const pages = ['home','gender','overview', 'survive']
+        pages.forEach(page => {
             let link = `/${page}`
-            if (page=='home') link = '/'
-            innerHtml += `<div class="w3-quarter w3-card-4 w3-wide w3-center w3-padding w3-large"  onclick="window.location.href='${link}'">${page}</div>\n`
+            if (page == 'home') link = '/'
+            innerHtml += `<div class="w3-quarter w3-hover-grey w3-border w3-wide w3-center w3-padding w3-large"  onclick="window.location.href='${link}'">${page}</div>\n`
         })
         document.getElementById('root').innerHTML = innerHtml
     </script>
@@ -88,7 +149,7 @@
                 };
                 new Chart(document.getElementById('survivebyclass'), config)
             })
-            // Survive By Deck 
+        // Survive By Deck 
         fetch('/api/survive-or-death-by-deck')
             .then(res => res.json())
             .then(dt => {
@@ -131,7 +192,7 @@
                 };
                 new Chart(document.getElementById('survivebydeck'), config)
             })
-            // Death By Class 
+        // Death By Class 
         fetch('/api/survive-or-death-by-class?survive=false')
             .then(res => res.json())
             .then(dt => {
@@ -174,8 +235,8 @@
                 };
                 new Chart(document.getElementById('deathbyclass'), config)
             })
-            // Death By Deck 
-            fetch('/api/survive-or-death-by-deck?survive=false')
+        // Death By Deck 
+        fetch('/api/survive-or-death-by-deck?survive=false')
             .then(res => res.json())
             .then(dt => {
                 const data = {

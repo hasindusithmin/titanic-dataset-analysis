@@ -6,60 +6,122 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overview</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400&display=swap" rel="stylesheet">    <style>
+        body{
+            font-family: 'Inter Tight', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
-    <header><div class="w3-row w3-panel" id="root"></div></header>
+    <header>
+        <div class="w3-row w3-panel" id="root"></div>
+    </header>
     <main>
         <div class="w3-row w3-padding">
-            <div class="w3-row w3-card">
-                <div class="w3-third">
-                    <h3 class="w3-center">Survived</h3>
-                    <canvas id="survivedbygender"></canvas>
+            <div class="w3-row w3-margin-bottom">
+                <div class="w3-third w3-padding">
+                    <div class="w3-card w3-round-large w3-padding w3-light-blue">
+                        <h3 class="w3-center">Total</h3>
+                        <canvas id="death-survive"></canvas>
+                        <p class="w3-justify">
+                            This analysis of the Titanic dataset shows that there were a total of 891 passengers on
+                            board the Titanic, with 549 of them being male and 342 of them being female. This means that
+                            the proportion of males to females in the dataset is approximately 61.3% to 38.7%. It is
+                            also worth noting that the total number of males and females in the dataset adds up to 891,
+                            indicating that all of the passengers in the dataset are accounted for and there are no
+                            missing values for the gender variable.
+                        </p>
+                    </div>
                 </div>
-                <div class="w3-third">
-                    <h3 class="w3-center">ALL</h3>
-                    <canvas id="death-survive"></canvas>
+                <div class="w3-third w3-padding">
+                    <div class="w3-card w3-round-large w3-padding w3-pale-red">
+                        <h3 class="w3-center">Survived</h3>
+                        <canvas id="survivedbygender"></canvas>
+                        <p class="w3-justify">
+                            This analysis of the Titanic dataset shows that out of the 891 passengers in the dataset,
+                            233 of the males and 109 of the females survived the sinking of the ship. This means that
+                            the proportion of males to females who survived is approximately 68.1% to 31.9%. It is also
+                            worth noting that the total number of males and females who survived adds up to 342, which
+                            is the total number of females in the dataset. This suggests that the vast majority of the
+                            female passengers in the dataset survived the sinking of the Titanic.
+                        </p>
+                    </div>
                 </div>
-                <div class="w3-third">
-                    <h3 class="w3-center">Deathed</h3>
-                    <canvas id="deathedbygender"></canvas>
+                <div class="w3-third w3-padding">
+                    <div class="w3-card w3-round-large w3-padding w3-light-grey">
+                        <h3 class="w3-center">Deathed</h3>
+                        <canvas id="deathedbygender"></canvas>
+                        <p class="w3-justify">
+                            This analysis of the Titanic dataset shows that, of the 891 passengers on board the Titanic,
+                            81 males and 468 females died. This means that the proportion of male to female deaths in
+                            the dataset is approximately 14.5% to 52.7%. It is worth noting that the total number of
+                            male and female deaths in the dataset adds up to 549, indicating that all of the deaths in
+                            the dataset are accounted for and there are no missing values for the gender variable in the
+                            deathed analysis. The high proportion of female deaths relative to male deaths may be due to
+                            a number of factors, including differences in survival rates between the genders,
+                            differences in the locations of passenger cabins on the ship, and possibly even chivalrous
+                            behavior among the male passengers.
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="w3-row">
-                <div class="w3-half">
-                    <div class="w3-half w3-card">
+                <div class="w3-quarter w3-padding">
+                    <div class="w3-card w3-round-large w3-padding w3-pale-red">
                         <h5 class="w3-center">Survived Male Stages</h3>
-                        <canvas id="suvivedmalebystages"></canvas>
-                    </div>
-                    <div class="w3-half w3-card">
-                        <h5 class="w3-center">Survived Female Stages</h3>
-                        <canvas id="survivedfemalebystages"></canvas>
+                            <canvas id="suvivedmalebystages"></canvas>
+                            <p class="w3-justify">
+                                This analysis of the Titanic dataset shows the number of male passengers who survived, grouped by age stage. The age stages are "child", "teen", "young", "adult", and "senior". The analysis shows that there were 21 male children who survived, 5 male teenagers who survived, 41 young males who survived, 24 adult males who survived, and 2 senior males who survived. It is worth noting that these numbers are specific to male survivors and do not include female survivors or any non-survivors. It may be useful to compare these numbers to the overall number of males in each age stage to get a better understanding of the survival rates for males at different ages.
+                            </p>
                     </div>
                 </div>
-                <div class="w3-half">
-                    <div class="w3-half w3-card">
+
+                <div class="w3-quarter w3-padding">
+                    <div class="w3-card w3-round-large w3-padding w3-light-grey">
                         <h5 class="w3-center">Deathed Male Stages</h3>
                             <canvas id="deathedmalebystages"></canvas>
-                    </div>
-                    <div class="w3-half w3-card">
-                        <h5 class="w3-center">Deathed Female Stages</h3>
-                            <canvas id="deathedfemalebystages"></canvas>
+                            <p class="w3-justify">
+                                This analysis of the Titanic dataset shows the number of male passengers who died, broken down by age group.According to this analysis, there were 16 male children who died in the disaster, 47 male teenagers who died, 179 young adult males who died, 101 adult males who died, and 17 senior citizen males who died. This information can help to provide a more detailed understanding of the demographics of the male passengers who did not survive the Titanic disaster.
+                            </p>
                     </div>
                 </div>
+
+                <div class="w3-quarter w3-padding">
+                    <div class="w3-card w3-round-large w3-padding w3-pale-red">
+                        <h5 class="w3-center">Survived Female Stages</h3>
+                            <canvas id="survivedfemalebystages"></canvas>
+                            <p class="w3-justify">
+                                This analysis of the Titanic dataset shows the breakdown of female passengers by age group and survival status. The analysis shows that there were 19 female children who survived, 34 teenage females who survived, 87 young adult females who survived, 54 adult females who survived, and 3 senior females who survived. This information could potentially be useful in understanding the factors that influenced the survival rate of female passengers on the Titanic. It might be interesting to compare these numbers to the survival rates of male passengers in different age groups to see if there are any notable differences. It could also be useful to consider other variables in the dataset, such as passenger class or fare paid, to see if they had any influence on survival rates.
+                            </p>
+                    </div>
+                </div>
+
+
+                <div class="w3-quarter w3-padding">
+                    <div class="w3-card w3-round-large w3-padding w3-light-grey">
+                        <h5 class="w3-center">Deathed Female Stages</h3>
+                            <canvas id="deathedfemalebystages"></canvas>
+                            <p class="w3-justify">
+                                This analysis of the Titanic dataset shows that among the female passengers who did not survive, there were 13 children (defined as those under the age of 18), 9 teenagers (defined as those between the ages of 18 and 20), 26 young adults (defined as those between the ages of 21 and 35), 16 adults (defined as those between the ages of 36 and 60), and no senior citizens (defined as those over the age of 60). This breakdown provides some insight into the age distribution of the female passengers who did not survive the Titanic disaster, and suggests that the majority of the deceased females were younger, with the largest group being young adults. It is worth noting that these age ranges are somewhat arbitrary and may be defined differently by different people.
+                            </p>
+                    </div>
+                </div>
+
             </div>
         </div>
         <br><br>
     </main>
     <script>
         let innerHtml = ''
-        const pages = ['home','overview','gender','survive']
-        pages.forEach(page=>{
+        const pages = ['home','gender','overview', 'survive']
+        pages.forEach(page => {
             let link = `/${page}`
-            if (page=='home') link = '/'
-            innerHtml += `<div class="w3-quarter w3-card-4 w3-wide w3-center w3-padding w3-large"  onclick="window.location.href='${link}'">${page}</div>\n`
+            if (page == 'home') link = '/'
+            innerHtml += `<div class="w3-quarter w3-hover-grey w3-border w3-wide w3-center w3-padding w3-large"  onclick="window.location.href='${link}'">${page}</div>\n`
         })
         document.getElementById('root').innerHTML = innerHtml
     </script>
@@ -173,8 +235,8 @@
                 };
                 new Chart(document.getElementById('suvivedmalebystages'), config)
             })
-            // Survived Female 
-            fetch('/api/survived-death-by-gender?gender=female&alive=true')
+        // Survived Female 
+        fetch('/api/survived-death-by-gender?gender=female&alive=true')
             .then(res => res.json())
             .then(dt => {
                 const { stages, ages, colors } = dt;
@@ -196,8 +258,8 @@
                 };
                 new Chart(document.getElementById('survivedfemalebystages'), config)
             })
-            // Deathed Male 
-            fetch('/api/survived-death-by-gender?gender=male&alive=false')
+        // Deathed Male 
+        fetch('/api/survived-death-by-gender?gender=male&alive=false')
             .then(res => res.json())
             .then(dt => {
                 const { stages, ages, colors } = dt;
@@ -219,8 +281,8 @@
                 };
                 new Chart(document.getElementById('deathedmalebystages'), config)
             })
-            // Deathed Female 
-            fetch('/api/survived-death-by-gender?gender=female&alive=false')
+        // Deathed Female 
+        fetch('/api/survived-death-by-gender?gender=female&alive=false')
             .then(res => res.json())
             .then(dt => {
                 const { stages, ages, colors } = dt;
